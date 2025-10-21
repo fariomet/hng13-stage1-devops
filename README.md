@@ -2,6 +2,7 @@
 Repository for HNG13 stage1 devops task
 
 This is a project by Banjo daniel
+
 A simple Bash script that does the following:
 
 * Collect Parameters from User Input Prompt for and validate
