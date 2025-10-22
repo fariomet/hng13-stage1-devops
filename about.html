@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <style>
+        /* Shared Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Navigation Styles */
+        nav[data-testid="test-main-navigation"] {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-links a[aria-current="page"] {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* About Page Styles */
+        main[data-testid="test-about-page"] {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 32px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 32px;
+            padding: 24px;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        h2 {
+            color: var(--secondary-color);
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 12px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 24px;
+        }
+
+        li:before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            main[data-testid="test-about-page"] {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            
+            section {
+                padding: 16px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav data-testid="test-main-navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+            <a href="index.html">Profile</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="about.html" aria-current="page">About Me</a>
+        </ul>
+    </nav>
+
+    <!-- About Me Content -->
+    <main data-testid="test-about-page">
+        <h1>About Me</h1>
+        
+        <!-- Bio Section -->
+        <section data-testid="test-about-bio">
+            <h2>My Journey</h2>
+            <p>I'm a passionate frontend developer with over 3 years of experience creating user-centered digital experiences. My journey began in university where I discovered my love for problem-solving through code.</p>
+            <p>What excites me most about web development is the constant evolution of technologies and the opportunity to create interfaces that make people's lives easier and more enjoyable.</p>
+        </section>
+
+        <!-- Goals Section -->
+        <section data-testid="test-about-goals">
+            <h2>Goals in This Program</h2>
+            <p>Through this program, I aim to:</p>
+            <ul>
+                <li>Master advanced JavaScript concepts and modern frameworks</li>
+                <li>Improve my understanding of web accessibility standards</li>
+                <li>Learn best practices for performance optimization</li>
+                <li>Develop stronger collaboration skills in tech teams</li>
+                <li>Build a portfolio of projects that solve real-world problems</li>
+            </ul>
+            <p>I believe that continuous learning is essential in our field, and I'm committed to growing both technically and professionally.</p>
+        </section>
+
+        <!-- Confidence Section -->
+        <section data-testid="test-about-confidence">
+            <h2>Areas of Low Confidence</h2>
+            <p>While I'm comfortable with many aspects of frontend development, there are areas where I'm actively working to improve:</p>
+            <ul>
+                <li><strong>Advanced CSS Animations:</strong> Creating complex, performant animations</li>
+                <li><strong>WebGL and 3D Graphics:</strong> Implementing 3D elements in web applications</li>
+                <li><strong>Advanced State Management:</strong> Complex state patterns in large applications</li>
+                <li><strong>Backend Integration:</strong> Deep understanding of API design and database optimization</li>
+            </ul>
+            <p>I see these challenges as opportunities for growth rather than limitations.</p>
+        </section>
+
+        <!-- Future Note Section -->
+        <section data-testid="test-about-future-note">
+            <h2>Note to My Future Self</h2>
+            <p>Remember why you started this journey - because you love creating things that help people. Don't let imposter syndrome hold you back from taking on new challenges.</p>
+            <p>Keep prioritizing clean, maintainable code over clever shortcuts. Stay curious about new technologies but remember that fundamentals never go out of style.</p>
+            <p>Most importantly, maintain balance. The best code is written by a well-rested, healthy mind. Take breaks, keep learning, and don't forget to celebrate your progress.</p>
+        </section>
+
+        <!-- Extra Thoughts Section -->
+        <section data-testid="test-about-extra">
+            <h2>Additional Reflections</h2>
+            <p>The web development community has been incredibly supportive throughout my journey. I'm grateful for:</p>
+            <ul>
+                <li>Open source contributors who share their knowledge freely</li>
+                <li>Mentors who took time to guide me</li>
+                <li>The accessibility advocates who remind us why inclusive design matters</li>
+                <li>Continuous learning resources that make skill development accessible to everyone</li>
+            </ul>
+            <p>I'm excited to contribute back to this community and help others on their development journeys.</p>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        /* Shared Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --error-color: #e63946;
+            --success-color: #2a9d8f;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Navigation Styles */
+        nav[data-testid="test-main-navigation"] {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .nav-links a[aria-current="page"] {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Contact Form Styles */
+        main[data-testid="test-contact-page"] {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 32px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        button[data-testid="test-contact-submit"] {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        button[data-testid="test-contact-submit"]:hover,
+        button[data-testid="test-contact-submit"]:focus {
+            background: var(--secondary-color);
+            outline: 2px solid var(--secondary-color);
+            outline-offset: 2px;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 14px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        input.error,
+        textarea.error {
+            border-color: var(--error-color);
+        }
+
+        .success-message {
+            background: var(--success-color);
+            color: white;
+            padding: 16px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            main[data-testid="test-contact-page"] {
+                padding: 20px;
+                margin: 0 10px;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav data-testid="test-main-navigation" aria-label="Main Navigation">
+        <ul class="nav-links">
+            <a href="index.html">Profile</a>
+            <a href="contact.html" aria-current="page">Contact Us</a>
+            <a href="about.html">About Me</a>
+        </ul> 
+    </nav>
+
+    <!-- Contact Form -->
+    <main data-testid="test-contact-page">
+        <h1>Contact Us</h1>
+        
+        <form id="contactForm" novalidate>
+            <!-- Full Name Field -->
+            <div class="form-group">
+                <label for="full-name">Full Name</label>
+                <input 
+                    type="text" 
+                    id="full-name" 
+                    data-testid="test-contact-name"
+                    aria-describedby="name-error"
+                    required
+                >
+                <div 
+                    id="name-error" 
+                    data-testid="test-contact-error-name" 
+                    class="error-message"
+                    aria-live="polite"
+                >
+                    Please enter your full name
+                </div>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    data-testid="test-contact-email"
+                    aria-describedby="email-error"
+                    required
+                >
+                <div 
+                    id="email-error" 
+                    data-testid="test-contact-error-email" 
+                    class="error-message"
+                    aria-live="polite"
+                >
+                    Please enter a valid email address
+                </div>
+            </div>
+
+            <!-- Subject Field -->
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input 
+                    type="text" 
+                    id="subject" 
+                    data-testid="test-contact-subject"
+                    aria-describedby="subject-error"
+                    required
+                >
+                <div 
+                    id="subject-error" 
+                    data-testid="test-contact-error-subject" 
+                    class="error-message"
+                    aria-live="polite"
+                >
+                    Please enter a subject
+                </div>
+            </div>
+
+            <!-- Message Field -->
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea 
+                    id="message" 
+                    data-testid="test-contact-message"
+                    aria-describedby="message-error"
+                    required
+                ></textarea>
+                <div 
+                    id="message-error" 
+                    data-testid="test-contact-error-message" 
+                    class="error-message"
+                    aria-live="polite"
+                >
+                    Message must be at least 10 characters long
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" data-testid="test-contact-submit">
+                Send Message
+            </button>
+
+            <!-- Success Message -->
+            <div 
+                data-testid="test-contact-success" 
+                class="success-message"
+                aria-live="polite"
+            >
+                Thank you! Your message has been sent successfully.
+            </div>
+        </form>
+    </main>
+
+    <script>
+        // Form Validation JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const successMessage = document.querySelector('[data-testid="test-contact-success"]');
+            
+            // Get all form elements
+            const nameInput = document.querySelector('[data-testid="test-contact-name"]');
+            const emailInput = document.querySelector('[data-testid="test-contact-email"]');
+            const subjectInput = document.querySelector('[data-testid="test-contact-subject"]');
+            const messageInput = document.querySelector('[data-testid="test-contact-message"]');
+            
+            // Get all error message elements
+            const nameError = document.querySelector('[data-testid="test-contact-error-name"]');
+            const emailError = document.querySelector('[data-testid="test-contact-error-email"]');
+            const subjectError = document.querySelector('[data-testid="test-contact-error-subject"]');
+            const messageError = document.querySelector('[data-testid="test-contact-error-message"]');
+
+            // Email validation regex pattern
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Function to validate individual fields
+            function validateField(input, errorElement, validationFn) {
+                const isValid = validationFn(input.value);
+                
+                if (!isValid) {
+                    input.classList.add('error');
+                    errorElement.classList.add('show');
+                    return false;
+                } else {
+                    input.classList.remove('error');
+                    errorElement.classList.remove('show');
+                    return true;
+                }
+            }
+
+            // Validation functions for each field
+            function validateName(name) {
+                return name.trim().length > 0;
+            }
+
+            function validateEmail(email) {
+                return emailPattern.test(email);
+            }
+
+            function validateSubject(subject) {
+                return subject.trim().length > 0;
+            }
+
+            function validateMessage(message) {
+                return message.trim().length >= 10;
+            }
+
+            // Real-time validation as user types
+            nameInput.addEventListener('input', function() {
+                validateField(nameInput, nameError, validateName);
+            });
+
+            emailInput.addEventListener('input', function() {
+                validateField(emailInput, emailError, validateEmail);
+            });
+
+            subjectInput.addEventListener('input', function() {
+                validateField(subjectInput, subjectError, validateSubject);
+            });
+
+            messageInput.addEventListener('input', function() {
+                validateField(messageInput, messageError, validateMessage);
+            });
+
+            // Form submission handler
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent actual form submission
+                
+                // Validate all fields
+                const isNameValid = validateField(nameInput, nameError, validateName);
+                const isEmailValid = validateField(emailInput, emailError, validateEmail);
+                const isSubjectValid = validateField(subjectInput, subjectError, validateSubject);
+                const isMessageValid = validateField(messageInput, messageError, validateMessage);
+                
+                // If all fields are valid, show success message
+                if (isNameValid && isEmailValid && isSubjectValid && isMessageValid) {
+                    successMessage.classList.add('show');
+                    form.reset(); // Clear the form
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(function() {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                } else {
+                    // Focus on first invalid field for accessibility
+                    if (!isNameValid) nameInput.focus();
+                    else if (!isEmailValid) emailInput.focus();
+                    else if (!isSubjectValid) subjectInput.focus();
+                    else if (!isMessageValid) messageInput.focus();
+                }
+            });
+
+            // Accessibility: Handle Enter key on form controls
+            form.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter' && event.target.tagName !== 'BUTTON') {
+                    event.preventDefault();
+                    // Move focus to next field
+                    const formElements = Array.from(form.elements);
+                    const currentIndex = formElements.indexOf(event.target);
+                    const nextElement = formElements[currentIndex + 1];
+                    
+                    if (nextElement) {
+                        nextElement.focus();
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
